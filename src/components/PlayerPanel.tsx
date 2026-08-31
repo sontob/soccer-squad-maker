@@ -64,12 +64,12 @@ const PlayerPanel: React.FC<PlayerPanelProps> = ({ players, setPlayers, totalQua
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col min-h-[400px]">
-      <div className="flex justify-between items-center mb-5">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-5">
         <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
           <Users className="w-5 h-5 text-indigo-500" />
           선수 명단 입력 <span className="text-sm font-normal text-slate-400">({players.length}명)</span>
         </h2>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2 w-full md:w-auto">
           <button 
             onClick={clearPlayerNames}
             className="flex items-center gap-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-medium py-2 px-4 rounded-lg shadow-sm transition-all active:scale-95"

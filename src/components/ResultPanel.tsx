@@ -212,7 +212,7 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
 
   const renderPitchView = (result: QuarterResult) => (
     <div className="flex flex-col xl:flex-row gap-6 flex-1 min-h-0 bg-white h-full">
-      <div className="flex-1 min-w-[300px] max-w-[500px] mx-auto w-full h-[600px] bg-green-600 rounded-xl border-4 border-white shadow-lg relative p-4 flex flex-col justify-between overflow-hidden">
+      <div className="flex-1 w-full max-w-[500px] mx-auto h-[550px] sm:h-[600px] bg-green-600 rounded-xl border-2 sm:border-4 border-white shadow-lg relative p-2 sm:p-4 flex flex-col justify-between overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[15%] border-b-2 border-l-2 border-r-2 border-white/30"></div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[40%] h-[15%] border-t-2 border-l-2 border-r-2 border-white/30"></div>
         <div className="absolute top-1/2 left-0 w-full border-b-2 border-white/30"></div>
@@ -304,8 +304,9 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
   const activeResult = results.find(r => r.quarter === activeTab);
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col min-h-[600px] h-full relative">
-      <div className="flex gap-2 mb-4 overflow-visible flex-wrap pb-2 border-b border-slate-100 items-center">
+    <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col min-h-[600px] h-full relative">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-2 mb-4 overflow-visible pb-2 border-b border-slate-100 md:items-center">
+        <div className="flex flex-wrap gap-2">
         {results.map(res => (
           <button
             key={res.quarter}
@@ -319,8 +320,9 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
             {res.quarter}쿼터
           </button>
         ))}
+        </div>
         
-        <div className="ml-auto flex items-center gap-2">
+        <div className="md:ml-auto flex flex-wrap items-center gap-2 mt-2 md:mt-0">
           <button
             onClick={() => setActiveTab('STATISTICS')}
             className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${

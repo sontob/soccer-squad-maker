@@ -141,7 +141,7 @@ function App() {
     if (formationError) return { text: "포메이션 오류", className: "bg-slate-300 text-slate-500 cursor-not-allowed" };
     if (!hasGenerated) return { text: "스쿼드 생성", className: "bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white transform hover:-translate-y-0.5" };
     if (needsUpdate) return { text: "변경사항 적용 (스쿼드 재생성)", className: "bg-amber-500 hover:bg-amber-600 text-white animate-pulse" };
-    return { text: "스쿼드 생성 완료", className: "bg-slate-300 text-slate-600 hover:bg-slate-400 hover:text-white transition-colors cursor-default" };
+    return { text: "스쿼드 재생성", className: "bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white transform hover:-translate-y-0.5" };
   };
 
   const buttonState = getButtonState();
@@ -149,9 +149,9 @@ function App() {
   return (
     <>
     <Toaster position="top-center" />
-    <div className="flex flex-col lg:flex-row h-screen p-4 gap-6 bg-slate-100 overflow-hidden text-slate-900 font-sans">
+    <div className="flex flex-col lg:flex-row min-h-screen lg:h-screen p-4 lg:p-6 gap-6 bg-slate-100 lg:overflow-hidden text-slate-900 font-sans">
       {/* 좌측: 설정 및 선수 입력 폼 */}
-      <div className="w-full lg:w-7/12 xl:w-1/2 flex flex-col gap-6 overflow-y-auto pr-2 pb-4">
+      <div className="w-full lg:w-7/12 xl:w-1/2 flex flex-col gap-6 lg:overflow-y-auto pr-0 lg:pr-2 pb-4">
         
         <header className="mb-2">
           <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">출전 명단 자동 생성기</h1>
