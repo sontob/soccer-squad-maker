@@ -155,14 +155,15 @@ const PlayerPanel: React.FC<PlayerPanelProps> = ({ players, setPlayers, totalQua
                   </td>
                   <td className="px-4 py-2.5">
                     <div className="flex justify-center">
-                      <input 
-                        type="number" 
-                        min="1"
-                        max={totalQuarters}
+                      <select 
                         value={player.availableQuarters}
-                        onChange={e => updatePlayer(player.id, 'availableQuarters', parseInt(e.target.value) || 0)}
-                        className="w-16 p-2 text-center bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
-                      />
+                        onChange={e => updatePlayer(player.id, 'availableQuarters', parseInt(e.target.value))}
+                        className="p-2 w-16 text-center bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer"
+                      >
+                        {Array.from({ length: totalQuarters }, (_, i) => i + 1).map(q => (
+                          <option key={q} value={q}>{q}</option>
+                        ))}
+                      </select>
                     </div>
                   </td>
                   <td className="px-4 py-2.5 min-w-[160px]">
