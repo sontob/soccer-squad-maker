@@ -160,14 +160,14 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
     setIsDownloadMenuOpen(false);
     if (!captureRef.current || isCapturing) return;
     setIsCapturing(true);
-    setDownloadProgress("저장 중...");
+    setDownloadProgress("이미지 생성 중...");
     
     try {
       await captureElement(
         captureRef.current, 
         `스쿼드_${activeTab === 'STATISTICS' ? '종합' : `${activeTab}쿼터`}.png`
       );
-      toast.success("이미지 저장 완료!");
+      toast.success("이미지 다운로드를 시작합니다.");
     } catch (e) {
       alert("이미지 캡처에 실패했습니다.");
     } finally {
@@ -186,7 +186,7 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
     try {
       for (let i = 0; i < tabsToCapture.length; i++) {
         const tab = tabsToCapture[i];
-        setDownloadProgress(`저장 중 (${i + 1}/${tabsToCapture.length})...`);
+        setDownloadProgress(`이미지 생성 중 (${i + 1}/${tabsToCapture.length})...`);
         
         const el = offscreenRefs.current[tab];
         if (el) {
@@ -196,7 +196,7 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
           await new Promise(res => setTimeout(res, 300));
         }
       }
-      toast.success("이미지 저장 완료!");
+      toast.success("이미지 다운로드를 시작합니다.");
     } catch (e) {
       alert("일괄 캡처 중 오류가 발생했습니다.");
     } finally {
@@ -245,7 +245,7 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
         
         <div className="flex flex-col justify-around flex-1 z-10 py-4 gap-4 px-2 w-full max-w-full">
           {[...result.squad.field].reverse().map((row, rowIndex) => (
-            <div key={rowIndex} className="flex flex-row justify-center items-center w-full max-w-full flex-wrap gap-x-2 gap-y-4">
+            <div key={rowIndex} className="flex flex-row justify-center items-center w-full max-w-full flex-nowrap gap-x-2 gap-y-4">
               {row.map((slot, colIndex) => {
                 const hasPlayer = slot.player !== null;
                 const score = hasPlayer ? getSimilarityScore(slot.player!, slot.targetPosition) : 0;
