@@ -114,12 +114,37 @@ const ResultPanel: React.FC<ResultPanelProps> = ({ results, allPlayers }) => {
 
   const captureElement = async (element: HTMLDivElement, filename: string) => {
     try {
+      // 1. 모바일 환경 등에서 스크롤로 인한 캡처 잘림 방지를 위해 임시로 최상단 이동
+      const originalScrollY = window.scrollY;
+      const originalScrollX = window.scrollX;
+      window.scrollTo(0, 0);
+
+      // 2. 요소의 실제 크기를 강제로 지정
+      const width = element.scrollWidth;
+      const height = element.scrollHeight;
+
+      // 3. 캡처 대상 요소의 overflow를 임시로 visible로 변경 (내부 잘림 방지)
+      const originalOverflow = element.style.overflow;
+      element.style.overflow = 'visible';
+
       const canvas = await html2canvas(element, {
-        scale: 2, // High resolution
+        scale: 3, // 해상도를 3으로 올려 더욱 선명하게 유지
         useCORS: true,
-        backgroundColor: null,
-        windowHeight: element.scrollHeight
+        backgroundColor: '#ffffff', // 배경색을 명시적으로 흰색으로 지정
+        width: width,
+        height: height,
+        windowWidth: document.documentElement.scrollWidth,
+        windowHeight: document.documentElement.scrollHeight,
+        x: 0,
+        y: 0,
+        scrollX: 0,
+        scrollY: 0
       });
+      
+      // 원래 상태로 복원
+      element.style.overflow = originalOverflow;
+      window.scrollTo(originalScrollX, originalScrollY);
+
       const url = canvas.toDataURL('image/png');
       const a = document.createElement('a');
       a.href = url;
