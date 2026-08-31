@@ -67,7 +67,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = ({ players, setPlayers, totalQua
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-5">
         <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
           <Users className="w-5 h-5 text-indigo-500" />
-          선수 명단 입력 <span className="text-sm font-normal text-slate-400">({players.length}명)</span>
+          선수 명단 <span className="text-sm font-normal text-slate-400">({players.length}명)</span>
         </h2>
         <div className="flex flex-wrap gap-2 w-full md:w-auto">
           <button 
@@ -161,7 +161,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = ({ players, setPlayers, totalQua
                         className="p-2 w-16 text-center bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer"
                       >
                         {Array.from({ length: totalQuarters }, (_, i) => i + 1).map(q => (
-                          <option key={q} value={q}>{q}</option>
+                          <option key={q} value={q}>{q}쿼터</option>
                         ))}
                       </select>
                     </div>

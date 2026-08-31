@@ -154,8 +154,8 @@ function App() {
       <div className="w-full lg:w-7/12 xl:w-1/2 flex flex-col gap-6 lg:overflow-y-auto pr-0 lg:pr-2 pb-4">
         
         <header className="mb-2">
-          <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">출전 명단 자동 생성기</h1>
-          <p className="text-sm text-slate-500 mt-1">설정과 선수 명단을 입력하고 스쿼드를 생성하세요.</p>
+          <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">축구 스쿼드 메이커</h1>
+          <p className="text-sm text-slate-500 mt-1">기본 설정과 선수 명단을 입력하고 스쿼드를 생성하세요.</p>
         </header>
 
         <SettingsPanel settings={settings} setSettings={setSettings} formationError={formationError} />

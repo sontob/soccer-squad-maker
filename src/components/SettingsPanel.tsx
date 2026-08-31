@@ -19,7 +19,7 @@ const FORMATION_OPTIONS: Record<number, string[]> = {
 const SettingsPanel: React.FC<SettingsPanelProps> = ({ settings, setSettings, formationError }) => {
   const [quarterWarning, setQuarterWarning] = useState<string | null>(null);
 
-  const handleQuartersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQuartersChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     let val = parseInt(e.target.value) || 0;
     if (val > 8) {
       val = 8;
@@ -32,7 +32,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({ settings, setSettings, fo
     setSettings(prev => ({ ...prev, totalQuarters: val }));
   };
 
-  const handlePlayersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePlayersChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     let newPlayers = parseInt(e.target.value) || 0;
     
     if (newPlayers > 11) {
@@ -92,30 +92,38 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({ settings, setSettings, fo
         <div className="flex flex-col gap-1.5">
           <label className="text-sm font-semibold text-slate-700">총 쿼터 수</label>
           <div className="relative">
-            <input 
-              type="number" 
-              min="1"
-              max="8"
+            <select 
               value={settings.totalQuarters}
               onChange={handleQuartersChange}
-              className={`w-full p-2.5 bg-slate-50 border rounded-lg focus:ring-2 focus:outline-none transition-all ${
+              className={`w-full p-2.5 bg-slate-50 border rounded-lg focus:ring-2 focus:outline-none transition-all cursor-pointer appearance-none ${
                 quarterWarning ? 'border-amber-400 focus:ring-amber-500 focus:border-amber-500' : 'border-slate-300 focus:ring-blue-500 focus:border-blue-500'
               }`}
-            />
+            >
+              {[1, 2, 3, 4, 5, 6, 7, 8].map(q => (
+                <option key={q} value={q}>{q}쿼터</option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
           </div>
         </div>
         
         <div className="flex flex-col gap-1.5">
           <label className="text-sm font-semibold text-slate-700">경기 인원수</label>
           <div className="relative">
-            <input 
-              type="number" 
-              min="5"
-              max="11"
+            <select 
               value={settings.playersPerMatch}
               onChange={handlePlayersChange}
-              className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-            />
+              className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all cursor-pointer appearance-none"
+            >
+              {[5, 6, 7, 8, 9, 10, 11].map(p => (
+                <option key={p} value={p}>{p}인</option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
           </div>
         </div>
         
